@@ -1,3 +1,3 @@
-add_executable(${PROJECT_NAME} main.c)
+add_executable(http_parser_example main.c)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE http_parser)
+target_link_libraries(http_parser_example PRIVATE HttpParser::HttpParser)
