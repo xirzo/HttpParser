@@ -68,6 +68,22 @@ To install the library system-wide, run:
 sudo make install
 ```
 
+### 🔗 Linking with Your Project
+
+#### Using CMake
+
+Add the following to your CMakeLists.txt:
+
+```cmake
+# Find the installed http_parser library
+find_library(HTTP_PARSER_LIB http_parser REQUIRED)
+find_path(HTTP_PARSER_INCLUDE http_parser.h REQUIRED)
+
+# Link to your target
+target_include_directories(your_target PRIVATE ${HTTP_PARSER_INCLUDE})
+target_link_libraries(your_target PRIVATE ${HTTP_PARSER_LIB})
+```
+
 ---
 
 ## 🔧 Usage
