@@ -50,10 +50,18 @@ void free_http_request(HttpRequest *r) {
 }
 
 void parse_request_line(HttpRequest *r, char *raw_line) {
-    char *token = strtok(raw_line, " ");
+    char *line_copy = strdup(raw_line);
+
+    if (line_copy == NULL) {
+        fprintf(stderr, "Failed to allocate memory for request line copy\n");
+        return;
+    }
+
+    char *token = strtok(line_copy, " ");
 
     if (token == NULL) {
         fprintf(stderr, "Failed to get token for http method\n");
+        free(line_copy);
         return;
     }
 
@@ -81,19 +89,23 @@ void parse_request_line(HttpRequest *r, char *raw_line) {
 
     if (token == NULL) {
         fprintf(stderr, "Failed to get token for http uri\n");
+        free(line_copy);
         return;
     }
 
-    r->uri = token;
+    strncpy(r->uri, token, MAX_URI_LENGTH - 1);
+
+    r->uri[MAX_URI_LENGTH - 1] = '\0';  // Ensure null termination
 
     token = strtok(NULL, "\r\n");
 
-    printf("%s", token);
-
     if (token == NULL) {
         fprintf(stderr, "Failed to get token for http version\n");
+        free(line_copy);
         return;
     }
+
+    printf("%s", token);
 
     if (strcmp(token, "HTTP/0.9") == 0) {
         r->version = HTTP_0_9;
@@ -108,6 +120,8 @@ void parse_request_line(HttpRequest *r, char *raw_line) {
     } else {
         r->version = HTTP_UNKNOWN_VERSION;
     }
+
+    free(line_copy);
 }
 
 HttpRequest *parse_http_request(char *raw_request) {
