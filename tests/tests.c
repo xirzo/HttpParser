@@ -18,10 +18,6 @@ void test_parse_request_line() {
 
     parse_request_line(r, raw_request_line);
 
-    printf("%u\n", r->method);
-    printf("%s\n", r->uri);
-    printf("%u\n", r->version);
-
     assert(r->method == HTTP_GET);
     assert(strcmp(r->uri, "/index.html") == 0);
     assert(r->version == HTTP_1_1);

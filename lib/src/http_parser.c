@@ -105,8 +105,6 @@ void parse_request_line(HttpRequest *r, char *raw_line) {
         return;
     }
 
-    printf("%s", token);
-
     if (strcmp(token, "HTTP/0.9") == 0) {
         r->version = HTTP_0_9;
     } else if (strcmp(token, "HTTP/1.0") == 0) {
