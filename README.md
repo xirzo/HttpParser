@@ -92,7 +92,7 @@ Add the following to your CMakeLists.txt:
 find_package(HttpParser REQUIRED)
 
 # Link to your target
-target_link_libraries(your_target PRIVATE HttpParser::HttpParser)
+target_link_libraries(your_target PRIVATE HttpParser::http_parser)
 ```
 
 ---
