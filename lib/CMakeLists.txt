@@ -2,3 +2,15 @@ add_library(http_parser STATIC ${CMAKE_CURRENT_SOURCE_DIR}/src/http_parser.c)
 
 target_include_directories(http_parser
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
+
+install(
+  TARGETS http_parser
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+install(
+  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+  FILES_MATCHING
+  PATTERN "*.h")
