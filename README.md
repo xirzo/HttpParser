@@ -48,6 +48,12 @@ cd build
 cmake ..
 ```
 
+#### Step 2.1: Optionally you can build examples/tests
+
+```bash
+cmake -DHTTP_PARSER_BUILD_EXAMPLES=ON -DHTTP_PARSER_BUILD_TESTS=ON ..
+```
+
 This will generate the necessary build files.
 
 ### Step 3: Build the Project
