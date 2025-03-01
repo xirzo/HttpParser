@@ -74,6 +74,14 @@ To install the library system-wide, run:
 sudo make install
 ```
 
+### Step 5: Uninstall the Library (If needed)
+
+If you need to remove the library from your system:
+
+```bash
+sudo make uninstall
+```
+
 ### 🔗 Linking with Your Project
 
 #### Using CMake
