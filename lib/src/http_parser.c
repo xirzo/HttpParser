@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void init_http_request(HttpRequest **r) {
+void initHttpRequest(HttpRequest **r) {
     *r = malloc(sizeof(HttpRequest));
 
     (*r)->method = HTTP_UNDEFINED_METHOD;
@@ -24,7 +24,7 @@ void init_http_request(HttpRequest **r) {
     (*r)->uri[0] = '\0';
 }
 
-void free_http_request(HttpRequest *r) {
+void freeHttpRequest(HttpRequest *r) {
     if (r == NULL) {
         return;
     }
@@ -49,7 +49,7 @@ void free_http_request(HttpRequest *r) {
     free(r);
 }
 
-void parse_request_line(HttpRequest *r, char *raw_line) {
+void parseRequestLine(HttpRequest *r, char *raw_line) {
     char *line_copy = strdup(raw_line);
 
     if (line_copy == NULL) {
@@ -122,7 +122,7 @@ void parse_request_line(HttpRequest *r, char *raw_line) {
     free(line_copy);
 }
 
-HttpRequest *parse_http_request(char *raw_request) {
+HttpRequest *parseHttpRequest(char *raw_request) {
     HttpRequest *r = malloc(sizeof(*r));
 
     return r;

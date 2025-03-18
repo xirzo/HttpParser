@@ -14,9 +14,9 @@ char raw_request[] =
 void test_parse_request_line() {
     char raw_request_line[] = "GET /index.html HTTP/1.1\r\n";
     HttpRequest *r;
-    init_http_request(&r);
+    initHttpRequest(&r);
 
-    parse_request_line(r, raw_request_line);
+    parseRequestLine(r, raw_request_line);
 
     assert(r->method == HTTP_GET);
     assert(strcmp(r->uri, "/index.html") == 0);

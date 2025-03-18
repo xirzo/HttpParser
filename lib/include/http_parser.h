@@ -40,9 +40,16 @@ typedef struct HttpRequest
     char *body;
 } HttpRequest;
 
-void init_http_request(HttpRequest **r);
-void free_http_request(HttpRequest *r);
-void parse_request_line(HttpRequest *r, char *raw_line);
-HttpRequest *parse_http_request(char *raw_r);
+/*
+ * Should not be used directly, will be made private later
+ */
+void initHttpRequest(HttpRequest **r);
+void freeHttpRequest(HttpRequest *r);
+/*
+ * Should not be used directly, will be made private later
+ */
+void parseRequestLine(HttpRequest *r, char *raw_line);
+
+HttpRequest *parseHttpRequets(const char *raw_r);
 
 #endif
