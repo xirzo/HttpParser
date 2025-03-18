@@ -30,6 +30,13 @@ typedef enum HttpVersion
     HTTP_UNKNOWN_VERSION,
 } HttpVersion;
 
+typedef struct HttpHeader
+{
+    char *name;
+    char *value;
+    struct HttpHeader *next;
+} HttpHeader;
+
 typedef struct HttpRequest
 {
     HttpMethod method;
@@ -48,7 +55,8 @@ void freeHttpRequest(HttpRequest *r);
 /*
  * Should not be used directly, will be made private later
  */
-void parseRequestLine(HttpRequest *r, char *raw_line);
+void parseRequestLine(HttpRequest *r, const char *raw);
+void parseHeaders(HttpRequest *r, const char *raw);
 
 HttpRequest *parseHttpRequets(const char *raw_r);
 

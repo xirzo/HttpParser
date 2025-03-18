@@ -49,18 +49,18 @@ void freeHttpRequest(HttpRequest *r) {
     free(r);
 }
 
-void parseRequestLine(HttpRequest *r, char *raw_line) {
-    char *line_copy = strdup(raw_line);
+void parseRequestLine(HttpRequest *r, const char *raw) {
+    char *line_copy = strdup(raw);
 
     if (line_copy == NULL) {
-        fprintf(stderr, "Failed to allocate memory for request line copy\n");
+        fprintf(stderr, "error: Failed to allocate memory for request line copy\n");
         return;
     }
 
     char *token = strtok(line_copy, " ");
 
     if (token == NULL) {
-        fprintf(stderr, "Failed to get token for http method\n");
+        fprintf(stderr, "error: Failed to get token for http method\n");
         free(line_copy);
         return;
     }
@@ -88,19 +88,19 @@ void parseRequestLine(HttpRequest *r, char *raw_line) {
     token = strtok(NULL, " ");
 
     if (token == NULL) {
-        fprintf(stderr, "Failed to get token for http uri\n");
+        fprintf(stderr, "error: Failed to get token for http uri\n");
         free(line_copy);
         return;
     }
 
     strncpy(r->uri, token, MAX_URI_LENGTH - 1);
 
-    r->uri[MAX_URI_LENGTH - 1] = '\0';  // Ensure null termination
+    r->uri[MAX_URI_LENGTH - 1] = '\0';
 
     token = strtok(NULL, "\r\n");
 
     if (token == NULL) {
-        fprintf(stderr, "Failed to get token for http version\n");
+        fprintf(stderr, "error: Failed to get token for http version\n");
         free(line_copy);
         return;
     }
@@ -121,6 +121,8 @@ void parseRequestLine(HttpRequest *r, char *raw_line) {
 
     free(line_copy);
 }
+
+void parseHeaders(HttpRequest *r, const char *raw) {}
 
 HttpRequest *parseHttpRequest(char *raw_request) {
     HttpRequest *r = malloc(sizeof(*r));

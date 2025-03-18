@@ -9,9 +9,6 @@ int main(void) {
 
     parseRequestLine(req, request);
 
-    // Future versions will support full request parsing
-    // req = parse_http_request(request);
-
     freeHttpRequest(req);
     return EXIT_SUCCESS;
 }
