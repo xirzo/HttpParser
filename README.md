@@ -34,7 +34,7 @@ To build and install the HTTP Parser library, follow these steps:
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/http-parser.git
+git clone https://github.com/xirzo/httpparser.git
 cd http-parser
 ```
 
